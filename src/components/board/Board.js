@@ -17,6 +17,7 @@ class Board extends Component {
 
     this.onTitleChange = this.onTitleChange.bind(this);
     this.addTask = this.addTask.bind(this);
+    this.updateTask = this.updateTask.bind(this);
   }
   addNewCard(e) {
     store.addCard();
@@ -39,6 +40,10 @@ class Board extends Component {
     store.addTask(cardId, value);
     this.setState({ cards: store.getBoard().cards });
   }
+  updateTask(cardId, taskId, text) {
+    store.updateTask(cardId, taskId, text);
+    this.setState({ cards: store.getBoard().cards });
+  }
   render() {
     const list = this.state.cards.map(card => (
       <Card
@@ -47,6 +52,7 @@ class Board extends Component {
         key={card.id}
         onTitleChange={this.onTitleChange}
         addTaskHandle={this.addTask}
+        updateTaskHandler={this.updateTask}
         id={card.id}
       />
     ));

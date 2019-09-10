@@ -5,7 +5,12 @@ function Task(props) {
   return (
     <div className="task">
       {props.task}
-      <i class="fas fa-pencil-alt" onClick={props.handleTaskEdit}></i>
+      <i
+        class="fas fa-pencil-alt"
+        onClick={e => {
+          props.handleTaskEdit(e, props.id);
+        }}
+      ></i>
     </div>
   );
 }
@@ -16,6 +21,7 @@ function TaskList(props) {
       task={task.task}
       key={task.id}
       handleTaskEdit={props.handleTaskEdit}
+      id={task.id}
     />
   ));
   return <div className="tasks">{tasksList}</div>;
@@ -76,7 +82,9 @@ class TaskEditInput extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  componentDidMount() {
+    this.taskInput.focus();
+  }
   render() {
     const style = {
       top: this.props.top,
@@ -89,6 +97,14 @@ class TaskEditInput extends React.Component {
           className="editLayer__input"
           defaultValue={this.props.text}
           style={style}
+          ref={input => (this.taskInput = input)}
+          onBlur={e => {
+            this.props.handleEditTask(e.target.value);
+          }}
+          onKeyPress={e => {
+            if (e.which === 27 || e.which === 13)
+              this.props.handleEditTask(e.target.value);
+          }}
         />
       </div>
     );
@@ -101,6 +117,7 @@ class Card extends React.Component {
       isTitleEdit: false,
       isAddingTask: false,
       isTaskEdit: false,
+      taskEditId: null,
       editLayer: {
         text: '',
         x: 0,
@@ -112,6 +129,7 @@ class Card extends React.Component {
     this.handleAddTask = this.handleAddTask.bind(this);
     this.handleAddBtn = this.handleAddBtn.bind(this);
     this.activateEdit = this.activateEdit.bind(this);
+    this.handleEditTask = this.handleEditTask.bind(this);
   }
 
   handleTitleClick(e) {
@@ -138,20 +156,26 @@ class Card extends React.Component {
       isAddingTask: true
     });
   }
-  activateEdit(e) {
+  activateEdit(e, id) {
     const rect = e.target.parentNode.getBoundingClientRect();
+    const text = e.target.parentNode.textContent;
     console.log(rect);
 
     const top = rect.top;
     const left = rect.left;
     this.setState({
       isTaskEdit: true,
+      taskEditId: id,
       editLayer: {
-        text: 'text',
+        text: text,
         left: left,
         top: top
       }
     });
+  }
+  handleEditTask(text) {
+    this.setState({ isTaskEdit: false });
+    this.props.updateTaskHandler(this.props.id, this.state.taskEditId, text);
   }
   render() {
     const isTitleEdit = this.state.isTitleEdit;
@@ -185,6 +209,7 @@ class Card extends React.Component {
             text={eLayer.text}
             top={eLayer.top}
             left={eLayer.left}
+            handleEditTask={this.handleEditTask}
           />
         ) : (
           ''

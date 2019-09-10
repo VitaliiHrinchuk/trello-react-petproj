@@ -2,8 +2,8 @@
 .card {
   background: $secondary-color;
   width: 250px;
-  padding: 20px 15px;
-  padding-bottom: 32px;
+
+  padding-bottom: 0;
   margin: 0 10px;
   margin-bottom: auto;
   align-self: flex-start;
@@ -22,6 +22,7 @@
     font-weight: normal;
     margin-bottom: 4px;
     cursor: pointer;
+    padding: 10px 15px;
   }
   &__edit {
     position: absolute;
@@ -39,14 +40,16 @@
     border-radius: 3px;
   }
   &__titleinput {
-    padding: 5px 8px;
     // background: $third-color;
+    margin-left: 20px;
     background: none;
     border: none;
     color: #fff;
     width: 85%;
     border-bottom: 2px solid #fff;
     margin-right: auto;
+    margin-bottom: 12px;
+    margin-top: 16px;
     &:focus {
       // background: $third-color;
       border-bottom: 2px solid $main-color;
@@ -54,9 +57,9 @@
     }
   }
   &__newbtn {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    // position: absolute;
+    // bottom: 0;
+    // left: 0;
     border: none;
     background: none;
     color: $main-color;
@@ -103,6 +106,7 @@
   flex-direction: column;
   width: 90%;
   margin-top: 10px;
+  padding: 5px;
 }
 
 .task {
@@ -115,8 +119,11 @@
   cursor: pointer;
   max-height: 100px;
   text-align: left;
-  text-overflow: ellipsis;
+  // text-overflow: ellipsis;
   overflow: hidden;
+  word-wrap: break-word;
+
+  white-space: normal;
   box-shadow: 1px 2px 1px $third-color;
   i {
     display: none;

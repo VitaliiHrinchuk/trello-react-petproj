@@ -51,6 +51,17 @@ class Storage {
     });
     localStorage.setItem('board', JSON.stringify({ cards: cards }));
   }
+  updateTask(cardId, taskId, text) {
+    const cards = this._getCards();
+    const cardIndex = cards.findIndex(el => {
+      return el.id === cardId;
+    });
+
+    cards[cardIndex].tasks.forEach(el => {
+      if (el.id === taskId) el.task = text;
+    });
+    localStorage.setItem('board', JSON.stringify({ cards: cards }));
+  }
 }
 
 export default Storage;
