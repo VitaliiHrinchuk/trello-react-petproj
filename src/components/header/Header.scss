@@ -1,0 +1,38 @@
+@import '../../colors.scss';
+.header {
+  background: $secondary-color;
+  padding: 4px;
+  position: relative;
+}
+.header_title {
+  text-align: center;
+  font-size: 0.8em;
+  position: absolute;
+  top: 50%;
+  height: 32px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // display: flex;
+
+  h1 {
+    font-size: 1.5em;
+  }
+}
+.header_btns {
+  display: flex;
+  padding-left: 10px;
+}
+.new_btn {
+  text-decoration: none;
+  color: $main-color;
+  border: 2px solid;
+  border-radius: 3px;
+  padding: 3px 5px;
+  float: left;
+  &::before {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}

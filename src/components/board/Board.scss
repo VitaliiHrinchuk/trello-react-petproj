@@ -1,0 +1,26 @@
+@import '../../colors.scss';
+.board {
+  position: absolute;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+.addCardBtn {
+  width: 250px;
+  text-transform: capitalize;
+  background: none;
+  border: 2px solid $secondary-color;
+  border-radius: 3px;
+  padding: 5px 5px;
+  font-weight: bold;
+  color: $main-color;
+  transition: color 0.3s;
+  cursor: pointer;
+  &:hover {
+    background: $secondary-color;
+  }
+}

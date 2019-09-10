@@ -1,0 +1,172 @@
+@import '../../colors.scss';
+.card {
+  background: $secondary-color;
+  width: 250px;
+  padding: 20px 15px;
+  padding-bottom: 32px;
+  margin: 0 10px;
+  margin-bottom: auto;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  border-radius: 7px;
+  overflow-y: auto;
+  min-height: 80px;
+  max-height: 90%;
+  position: relative;
+  h2 {
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: normal;
+    margin-bottom: 4px;
+    cursor: pointer;
+  }
+  &__edit {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    color: $main-color;
+    font-size: 0.7em;
+    line-height: 25px;
+    &:hover {
+      background: #42495e;
+    }
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+  }
+  &__titleinput {
+    padding: 5px 8px;
+    // background: $third-color;
+    background: none;
+    border: none;
+    color: #fff;
+    width: 85%;
+    border-bottom: 2px solid #fff;
+    margin-right: auto;
+    &:focus {
+      // background: $third-color;
+      border-bottom: 2px solid $main-color;
+      outline: none;
+    }
+  }
+  &__newbtn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border: none;
+    background: none;
+    color: $main-color;
+    padding: 5px 10px;
+    width: 100%;
+
+    cursor: pointer;
+    &:hover {
+      background: #42495e;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  &__taskinput {
+    width: 90%;
+    border: none;
+    border-radius: 5px;
+    background: $main-color;
+    height: 50px;
+    color: #ffffff;
+    padding: 10px;
+    padding-bottom: 30px;
+    &:focus {
+      outline: none;
+    }
+    &::-webkit-input-placeholder {
+      /* Edge */
+      color: #fff;
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #fff;
+    }
+
+    &::placeholder {
+      color: #fff;
+    }
+  }
+}
+.tasks {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 10px;
+}
+
+.task {
+  background: $main-color;
+  margin-bottom: 8px;
+  position: relative;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #fff;
+  cursor: pointer;
+  max-height: 100px;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  box-shadow: 1px 2px 1px $third-color;
+  i {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7em;
+  }
+  &:hover {
+    background: darken($main-color, 7%);
+  }
+  &:hover i {
+    display: block;
+  }
+}
+
+.editLayer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba($third-color, 0.6);
+  &__input {
+    width: 198px;
+    border: none;
+    border-radius: 5px;
+    background: $main-color;
+    height: 100px;
+    color: #ffffff;
+    padding: 10px;
+    padding-bottom: 80px;
+    position: absolute;
+
+    &:focus {
+      outline: none;
+    }
+    &::-webkit-input-placeholder {
+      /* Edge */
+      color: #fff;
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #fff;
+    }
+
+    &::placeholder {
+      color: #fff;
+    }
+  }
+}
